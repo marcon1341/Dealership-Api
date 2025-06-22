@@ -5,11 +5,11 @@
 </head>
 <h1>            <span style="font-size:2.5rem; font-weight:bold;">Car Dealership API</span> </h1>
 
-
-
-
-
  <h3>Front Page</h3>
+
+
+
+ 
  ![Screenshot 2025-06-21 184711](https://github.com/user-attachments/assets/fab2c017-ed9e-4974-a6f8-9bd189f97c8e)
 
 
