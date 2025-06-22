@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car Dealerships Home</title>
+  <style>
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(120deg, #f7cac9 0%, #92a8d1 100%);
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        display: flex;
+        align-items: center;
+        background: #374785;
+        color: #fff;
+        padding: 18px 40px;
+        box-shadow: 0 2px 10px rgba(60,60,90,0.08);
+    }
+    .logo {
+        width: 55px;
+        height: 55px;
+        margin-right: 22px;
+    }
+    h1 {
+        font-size: 2.2em;
+        margin: 0;
+        letter-spacing: 2px;
+        font-weight: 700;
+    }
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 18px;
+        padding: 30px 40px 40px 40px;
+        box-shadow: 0 6px 36px rgba(70,70,90,0.08);
+    }
+    input {
+        margin: 0 8px 16px 0;
+        padding: 8px 14px;
+        border-radius: 7px;
+        border: 1.5px solid #374785;
+        background: #f2f6fc;
+        font-size: 1em;
+        outline: none;
+        transition: border 0.2s;
+    }
+    input:focus {
+        border: 2px solid #f76c6c;
+    }
+    button {
+        background: linear-gradient(90deg, #f76c6c 20%, #374785 90%);
+        color: white;
+        border: none;
+        padding: 9px 26px;
+        border-radius: 7px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(100,70,140,0.09);
+    }
+    button:hover {
+        background: linear-gradient(90deg, #374785 10%, #f76c6c 100%);
+    }
+    h2 {
+        color: #374785;
+        margin-top: 34px;
+        font-size: 1.4em;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        background: #fafafa;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-top: 8px;
+    }
+    th, td {
+        border: none;
+        padding: 12px 14px;
+        text-align: left;
+    }
+    th {
+        background: #92a8d1;
+        color: #222;
+        font-size: 1em;
+        letter-spacing: 1px;
+    }
+    tr:nth-child(even) {
+        background: #f2f6fc;
+    }
+    tr:nth-child(odd) {
+        background: #fff;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <!-- Inline SVG car icon (free and open license) -->
+  <svg class="logo" viewBox="0 0 64 64" fill="none">
+    <circle cx="32" cy="32" r="30" fill="#f76c6c"/>
+    <rect x="10" y="32" width="44" height="12" rx="6" fill="#fff" stroke="#374785" stroke-width="2"/>
+    <rect x="16" y="25" width="32" height="14" rx="7" fill="#92a8d1" stroke="#374785" stroke-width="2"/>
+    <circle cx="19" cy="48" r="5" fill="#374785"/>
+    <circle cx="45" cy="48" r="5" fill="#374785"/>
+  </svg>
+  <h1>Car Dealerships Home</h1>
+</header>
+<div class="container">
+  <input id="vin" placeholder="vin">
+  <input id="make" placeholder="make">
+  <input id="model" placeholder="model">
+  <input id="year" placeholder="year" type="number">
+  <input id="color" placeholder="color">
+  <input id="price" placeholder="price">
+  <button onclick="addVehicle()">SAVE</button>
+
+  <h2>Existing Items</h2>
+  <table id="vehiclesTable">
+    <thead>
+    <tr>
+      <th>VIN</th><th>Make</th><th>Model</th><th>Year</th><th>Color</th><th>Price</th>
+    </tr>
+    </thead>
+    <tbody id="vehiclesBody"></tbody>
+  </table>
+</div>
+<script>
+  async function fetchVehicles() {
+      const res = await fetch('/vehicles');
+      const vehicles = await res.json();
+      const tbody = document.getElementById('vehiclesBody');
+      tbody.innerHTML = '';
+      vehicles.forEach(v => {
+          const row = `<tr>
+              <td>${v.vin}</td>
+              <td>${v.make}</td>
+              <td>${v.model}</td>
+              <td>${v.year}</td>
+              <td>${v.color}</td>
+              <td>${v.price}</td>
+          </tr>`;
+          tbody.innerHTML += row;
+      });
+  }
+
+  async function addVehicle() {
+      const vin = document.getElementById('vin').value;
+      const make = document.getElementById('make').value;
+      const model = document.getElementById('model').value;
+      const year = parseInt(document.getElementById('year').value);
+      const color = document.getElementById('color').value;
+      const price = document.getElementById('price').value;
+
+      const vehicle = { vin, make, model, year, color, price };
+
+      const res = await fetch('/vehicles', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(vehicle)
+      });
+
+      if (res.ok) {
+          document.getElementById('vin').value = '';
+          document.getElementById('make').value = '';
+          document.getElementById('model').value = '';
+          document.getElementById('year').value = '';
+          document.getElementById('color').value = '';
+          document.getElementById('price').value = '';
+          fetchVehicles();
+      } else {
+          alert('Error saving vehicle');
+      }
+  }
+
+  window.onload = fetchVehicles;
+</script>
+</body>
+</html>
