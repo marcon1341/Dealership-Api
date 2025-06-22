@@ -1,26 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Car Dealership API - Project README</title>
-  <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f7faff; margin: 0; color: #222; }
-    .header { background: linear-gradient(90deg, #2274a5, #20b2aa); color: #fff; padding: 30px 0; text-align: center; border-radius: 0 0 30px 30px; }
-    .header img { height: 60px; vertical-align: middle; margin-right: 15px;}
-    h1 { margin-bottom: 0; }
-    .container { max-width: 800px; margin: 30px auto; background: #fff; box-shadow: 0 0 12px #b3d1e6; border-radius: 15px; padding: 32px; }
-    h2 { color: #2274a5; }
-    ul { line-height: 1.7; }
-    code, pre { background: #f3f3f3; color: #2d5871; border-radius: 6px; padding: 2px 6px; }
-    .badge { display: inline-block; background: #ffb400; color: #222; padding: 3px 10px; border-radius: 7px; margin-right: 7px;}
-    a { color: #20b2aa; }
-  </style>
+  
 </head>
+<h1>            <span style="font-size:2.5rem; font-weight:bold;">Car Dealership API</span> </h1>
+
+
+
+
+
+ <h3>Front Page</h3>
+ ![Screenshot 2025-06-21 184711](https://github.com/user-attachments/assets/fab2c017-ed9e-4974-a6f8-9bd189f97c8e)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'
+
+
+
 <body>
   <div class="header">
     <img src="https://cdn-icons-png.flaticon.com/512/743/743007.png" alt="Car Logo"/>
-    <span style="font-size:2.5rem; font-weight:bold;">Car Dealership API</span>
-    <div style="margin-top:10px;">A RESTful Java Spring Boot Backend</div>
+    <div style="margin-top:10px;">A RESTful Java Spring Boot</div>
   </div>
   <div class="container">
     <h2>🚗 Overview</h2>
@@ -50,7 +78,7 @@
     <h2>📬 Example Search</h2>
     <pre>
 GET /vehicles/search?make=Toyota&minYear=2022&maxPrice=15000
-    </pre>
+    </pre> 
     <h2>🚦 Status</h2>
     <p>
       <span class="badge">Complete</span>
@@ -62,3 +90,4 @@ GET /vehicles/search?make=Toyota&minYear=2022&maxPrice=15000
   </div>
 </body>
 </html>
+
